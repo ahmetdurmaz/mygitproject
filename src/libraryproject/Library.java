@@ -31,6 +31,7 @@ public class Library {
 			break;
 			}
 			case 2:{ System.out.println("kitap verilecek");
+			kitapVerme();
 			break;
 			}
 			case 3:{System.out.println("Kitap iade");
@@ -69,6 +70,34 @@ public class Library {
 		}while(!cikis.equalsIgnoreCase("x"));
 
 	}
+	public static void kitapVerme() {
+		System.out.println("Lutfen kitap seciminizi yapiniz");
+
+		int kitapVerme = scan.nextInt();
+
+		switch (kitapVerme) {
+		case 1:{ System.out.println("suc ve ceza");
+
+		break;
+		}
+		case 2:{ System.out.println("beyaz dis");
+
+		break;
+		}
+		case 3:{System.out.println("cocuk kalbi");
+		break;
+		}
+		case 4:{System.out.println("kasagı");
+		break;
+		}
+		case 5:{System.out.println("mesnevi");
+		break;
+		}
+		default:System.out.println("Girdiginiz kitap numarasi uygun degildir");
+
+		}
+	}
+
 	public static int menu() {
 		System.out.println("Lütfen işleminizi seçiniz...\n"
 				+ "1- Üye Kaydı Yap \n"
@@ -110,4 +139,4 @@ public class Library {
 	//	    System.out.println(adsoyad +"\t" + kitapAdi.get(kitapNo)+ "\t"+tarihf.format(tarih));
 	//  }
 	//  
-}        
+}
