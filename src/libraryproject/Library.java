@@ -126,7 +126,15 @@ public class Library {
 		}
 
 	}
+// burda github.com da yazdigim yeni code
+	public static void kitapListele() {
+		System.out.println("Kitaplar");
+		System.out.println("===\t ======= ");
 
+		for (int i = 0; i < kitapAdi.size(); i++) {
+			System.out.println(i + "\t" + kitapAdi.get(i) );
+
+		}
 
 
 	//public static void kayit() {
