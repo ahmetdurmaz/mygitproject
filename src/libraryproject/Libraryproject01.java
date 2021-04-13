@@ -9,7 +9,8 @@ public class Libraryproject01 {
 	public static List<String> kitabAdi = new ArrayList<>();
 	public static List<String> yazarAdi = new ArrayList<>();
 	public static List<String> yayinYili = new ArrayList<>();
-	public static List<String> fiyat = new ArrayList<>();
+	public static List<Double> fiyat = new ArrayList<>();
+	public static int kitapKodu=1001;
 	public static Scanner scan = new Scanner(System.in);
 	
 	
@@ -72,6 +73,31 @@ public class Libraryproject01 {
 	}
 	
 	public static void kitapEkle() {
+		
+		String secim2;
+		String girilenKitapAdi;
+		String girilenYazarAdi;
+		String girilenYayinYili;
+		double girilenFiyat;
+		
+		System.out.println("Kitap adini giriniz");
+		girilenKitapAdi = scan.next();
+		kitabAdi.add(girilenKitapAdi);
+		
+		System.out.println("Yazar Adi Giriniz");
+		girilenYazarAdi = scan.next();
+		yazarAdi.add(girilenYazarAdi);
+		
+		System.out.println("Yayin Yili giriniz");
+		girilenYayinYili = scan.next();
+		yayinYili.add(girilenYayinYili);
+		
+		
+		
+		
+		
+		
+		
 
 
 	}
