@@ -7,144 +7,163 @@ import java.util.Scanner;
 
 public class Library {
 
-	public static List<String> kullaniciBilgileri=new ArrayList<>();
-	public static List<String> kitapAdi=new ArrayList<>();
-	public static List<String> alinmaTarihi=new ArrayList<>();
-	public static Scanner scan = new Scanner(System.in);
+	// nextline neden olmuyor hocaya soralım
+		public static List<String> kitapAdi= new ArrayList<>();
+		public static List<String> yazarAdi= new ArrayList<>();
+		public static List<String> yayinYili= new ArrayList<>();
+		public static List<Double> fiyat= new ArrayList<>();
+		public static int kitapKodu=1001;
+		public static int index=0;
+		public static List<Integer> kitapKoduList= new ArrayList<>();
+		public static Scanner scan = new Scanner(System.in);
+		
+		public static void main(String[] args) {
+			/*1.Bu programda kitaplar, Kitap Adı, Yazar Adı, Yayın Yılı ve Fiyat
+	           gibi bilgiler içerebilmelidir.
+	           2. Program, kitaplara 1001’den başlayarak sıralı ve otomatik numara
+	                   vermelidir.
+	          3. Kullanıcı sisteme Kitap eklemeyebimeli, silebilmeli, arama ve
+	         tüm kitapları listeleme gibi işlemleri yapabilmelidir.
+	          4. Programın başlangıcında Kullanıcıya aşağıdaki gibi bir menü
+	         sunulmalıdır ve Kullanıcı programı bitirene kadar işlemlere devam
+	          edebilmelidir.
+	          ========= KİTAP PROGRAMI =============
+	           1: Kitap ekle
+	           2: Numara ile kitap sil
+	           3: Numara ile kitap ara
+	           4: Tüm kitapları listele
+	           5: Bitti
+			 */
 
-	public static String verilenKitap[][]= {};
+			int secim;
 
-	public static int secenek;
+			do {
+				secim = menuGoster();
+				switch ( secim ) {
+				case 1:
 
-	public static void main(String[] args) {
+					kitapEkle();
+					break;
+				case 2:kitapSil();
+				break;
+				case 3:kitapAra();
+				break;
+				case 4:kitapListele();
+				break;
 
-		// kullanıcılara ait bilgileri, kitap detayları, alınma tarihi
-		kitapAdi.addAll(Arrays.asList("suc ve ceza","beyaz dis","cocuk kalbi","kasagı","mesnevi"));
-		kullaniciBilgileri.addAll(Arrays.asList("1.Kişi", "2.Kişi", "3.Kişi", "4.Kişi","5.Kişi"));   
 
-		do {
-			secenek=menu();
-			//System.out.println("seçeneğimiz "+ secenek);
-			switch (secenek) {
-			case 1:{ System.out.println("üye kaydı yapılacak");
-			uyeKaydi();
-			break;
+				default:
+					break;
+				}}while(secim!=6);
+		}
+
+		public static void kitapListele() {
+			for (int i = 0; i < kitapAdi.size(); i++) {
+
+				System.out.println(kitapKoduList.get(i) +" "+ kitapAdi.get(i)+" "+yazarAdi.get(i)+" "+yayinYili.get(i)+" "+fiyat.get(i));
 			}
-			case 2:{ System.out.println("kitap verilecek");
-			kitapVerme();
-			break;
+
+		}
+
+		public static void kitapAra() {
+			System.out.println("aramak istediginiz kitap kodunu giriniz");
+			int secilenKitapKodu=scan.nextInt();
+			if (kitapKoduList.size()==0) {
+				System.out.println("sistemde kitap yok");
+			} else {
+
+
+				for (int i = 0; i < kitapKoduList.size(); i++) {
+					if (kitapKoduList.get(i)==secilenKitapKodu) {
+
+						System.out.println(kitapKoduList.get(i)+" "
+								+kitapAdi.get(i)+" "
+								+yazarAdi.get(i)+" "
+								+yayinYili.get(i)+" "
+								+fiyat.get(i));
+					} else {
+						System.out.println("girdiginiz kod ile kitap yok");
+					}
+				}
 			}
-			case 3:{System.out.println("Kitap iade");
-			break;
-			}
-			case 4:{System.out.println("Kütüphanedeki Kitaplar");
-			break;
-			}
-			case 5:{System.out.println("Verilen kitaplar ");
-			break;
-			}
-			case 6:{System.out.println("Tüm Kitap hareketleri Listele");
-			break;
-			}
-			default:System.out.println("Çıkış yapılacak...");
-			break;
+
+		}
+
+		public static void kitapSil() {
+			kitapListele();
+
+			System.out.println("silmek istediginiz kitap kodunu giriniz");
+			int secilenKitapKodu=scan.nextInt();
+			for (int i = 0; i < kitapKoduList.size(); i++) {
+				if (kitapKoduList.get(i)==secilenKitapKodu) {
+					kitapKoduList.remove(i);
+					kitapAdi.remove(i);
+					yazarAdi.remove(i);
+					yayinYili.remove(i);
+					fiyat.remove(i);
+					System.out.println("sectiginiz kitap silindi");
+				} else {
+					System.out.println("girdiginiz kod ile kitap yok");
+				}
 			}
 
 
+		}
 
-		}while(secenek!=7);
-		System.out.println("İyi günler dileriz. Hoşçakalın.");
+		public static int menuGoster() {
+			int secim;
+
+			do {
+				System.out.println(" ========= KİTAP PROGRAMI =============");
+				System.out.println(" 1: Kitap ekle\n 2: Numara ile kitap sil \n 3: Numara ile kitap ara \n 4: Tüm kitapları listele \n 5: Bitti");
+				System.out.println("Lutfen 1-5 arasi secim yapınız");
+				secim = scan.nextInt();
+				if (secim<1 || secim>5) {
+					System.out.println("Yanlıs giris  yaptınız Lutfen 1-5 arası deger giriniz");
+				}
+			} while (secim<1 || secim>6);
+			 if (secim==5) {
+				 System.out.println("Isleminiz Bitmistir");
+			}
+			return secim; 
+		}
+
+
+		public static void kitapEkle() {
+			char secim2;
+			String girilenKitapAdi;
+			String girilenYazarAdi;
+			String girilenYayinYili;
+			Double girilenFiyat;
+
+			do {
+
+				System.out.println("Kitap adını giriniz");
+				girilenKitapAdi=scan.next();
+				kitapAdi.add(girilenKitapAdi);
+
+				System.out.println("Yazar adi giriniz");
+				girilenYazarAdi=scan.next();
+				yazarAdi.add(girilenYazarAdi);
+
+				System.out.println("yayin yili giriniz");
+				girilenYayinYili=scan.next();
+				yayinYili.add(girilenYayinYili);
+
+				System.out.println("Fiyat giriniz");
+				girilenFiyat=scan.nextDouble();
+				fiyat.add(girilenFiyat);
+
+				kitapKoduList.add(kitapKodu++);
+
+
+				System.out.println((kitapKodu-1)+girilenKitapAdi+girilenYazarAdi+girilenYayinYili+girilenFiyat);
+				System.out.println("yeni kitap eklemek istiyor musunuz : e/h");
+				secim2=scan.next().toLowerCase().charAt(0);
+
+			}while(secim2=='e');
+			
+			// bu kodu yeni ekledim
+		}
+
 	}
-
-	public static void uyeKaydi() {
-		String cikis;
-		String uyeAdi;
-		do {
-			System.out.println("Lütfen Üye adını giriniz...");
-			//hata vardı. devam edilecek... nextLine yerine next yazınca oldu. Sebebini soralım?
-			uyeAdi=scan.next();
-			kullaniciBilgileri.add(uyeAdi);
-
-			System.out.println("Üye kaydı gerçekleşmiştir. Yeni üye için Y Tuşuna, Çıkış için X tuşuna basınız.");
-			cikis=scan.next();
-		}while(!cikis.equalsIgnoreCase("x"));
-
-	}
-	public static void kitapVerme() {
-		System.out.println("Lutfen kitap seciminizi yapiniz");
-
-		int kitapVerme = scan.nextInt();
-
-		switch (kitapVerme) {
-		case 1:{ System.out.println("suc ve ceza");
-
-		break;
-		}
-		case 2:{ System.out.println("beyaz dis");
-
-		break;
-		}
-		case 3:{System.out.println("cocuk kalbi");
-		break;
-		}
-		case 4:{System.out.println("kasagı");
-		break;
-		}
-		case 5:{System.out.println("mesnevi");
-		break;
-		}
-		default:System.out.println("Girdiginiz kitap numarasi uygun degildir");
-
-		}
-	}
-
-	public static int menu() {
-		System.out.println("Lütfen işleminizi seçiniz...\n"
-				+ "1- Üye Kaydı Yap \n"
-				+ "2-Kitap ver\n"
-				+ "3-Kitap İade\n"
-				+ "4-Kütüphanedeki Kitaplar\n"
-				+ "5-Verilen Kitaplar\n"
-				+ "6-Tüm Kitap hareketleri Listele\n"
-				+ "7-Çıkış\n"
-				+ " ");
-		int secim;
-		do {//döngüne 1 defa giriş yapar. içindekileri çalıştırır. eğer seçim 1 ve 7 arasında ise döngüden çıkar yoksa döngü devam eder.
-			secim = scan.nextInt();
-			if (secim<1||secim>7) { System.out.println("Lütfen 1 ile 7 arasında bir sayı seçiniz...");
-			}
-		}while(secim<1||secim>7);
-		return secim;
-	}
-	public static void kitapListele() {
-		System.out.println("Kitaplar");
-		System.out.println("===\t ======= ");
-
-		for (int i = 0; i < kitapAdi.size(); i++) {
-			System.out.println(i + "\t" + kitapAdi.get(i) );
-
-		}
-
-	}
-// burda github.com da yazdigim yeni code
-//	public static void kitapListele() {
-//		System.out.println("Kitaplar");
-//		System.out.println("===\t ======= ");
-//
-//		for (int i = 0; i < kitapAdi.size(); i++) {
-//			System.out.println(i + "\t" + kitapAdi.get(i) );
-//
-//		}
-
-
-	//public static void kayit() {
-	//	      
-	//  System.out.println("kitap no girin: " );
-	//	    int kitapNo =scan.nextInt();
-	//	    DateTimeFormatter tarihf = DateTimeFormatter.ofPattern("yyyy/MM/d");
-	//	    LocalDate tarih = LocalDate.now();
-	//   System.out.println();
-	//	    System.out.println(adsoyad +"\t" + kitapAdi.get(kitapNo)+ "\t"+tarihf.format(tarih));
-	//  }
-	//  
-}
